@@ -1,19 +1,20 @@
-// workflows/main.nf
+#!/user/bin/env nextflow
 nextflow.enable.dsl=2
 
+// Parameters (default values, can be overriden by user )
+params.input = "/home/viral_genome_analysis/data/"
+params.output_dir = "/home/hooman/work/output_dir"
 
-// Include each module
-include { fastqc } from '../modules/fastqc.nf'
-include { trim_reads } from '../modules/cutadapt.nf'
-include { host_removal } from '../modules/bowtie2.nf'
-include { taxonomy_classification } from '../modules/kraken2.nf'
+include { trimmomatic } from "../modules/trimmomatic.nf"
 
 workflow {
-    read_channel = Channel.fromPath('data/*.fastq.gz')
+    // Used Channel.fromFilePairs to pair the fastq.gz files (R1 and R2)
+    def read_channel = Channel.fromFilePairs("${params.input}*.R{1,2}_001.fastq.gz", size: 2)
 
-    // Run each process, passing output of one as input to the next
-    fastqc(read_channel)
-    trim_reads(fastqc_results)
-    host_removal(trimmed_results)
-    taxonomy_classification(no_host_results)
+	// Print the content of read_channel to check if files are loaded
+	// avoid when 
+    read_channel.view()
+
+    // Run trimmomatic process with paired reads
+    trimmied_reads_ch = trimmomatic(read_channel)
 }
