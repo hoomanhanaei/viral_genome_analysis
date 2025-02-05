@@ -1,3 +1,4 @@
+
 # viral_genome_analysis
 Bioinformatics pipeline
 
@@ -20,9 +21,4 @@ This repository contains a Nextflow pipeline for analyzing viral genomes in cell
 │   └── kraken2.nf          # Module for Kraken2 process
 |
 ├── 📂 config/             # tool's dependencies
-│   ├── fastqc_out/         # FastQC output files
-│   ├── trimmed_reads/      # Trimmed reads from Cutadapt
-│   ├── no_host/            # Host-filtered reads from Bowtie2
-    └── taxonomy_output/    # Taxonomic classification results from Kraken2
-
 ```
