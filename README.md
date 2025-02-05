@@ -8,19 +8,21 @@ This repository contains a Nextflow pipeline for analyzing viral genomes in cell
 ```
 ## Project Structure
 
-viral_genome_analysis/
-├── workflows/
-│   └── main.nf             # Main pipeline script
-├── modules/
+📂 viral_genome_analysis/
+├── 📂 workflows/
+│   ├── main.nf             # Main pipeline script
+|   └── nextflow.config     # Configuration file
+|
+├── 📂 modules/
 │   ├── fastqc.nf           # Module for FastQC process
 │   ├── cutadapt.nf         # Module for Cutadapt process
 │   ├── bowtie2.nf          # Module for Bowtie2 process
 │   └── kraken2.nf          # Module for Kraken2 process
-├── data/                   # Directory for input FASTQ files
-├── results/                # Directory for output results
+|
+├── 📂 config/             # tool's dependencies
 │   ├── fastqc_out/         # FastQC output files
 │   ├── trimmed_reads/      # Trimmed reads from Cutadapt
 │   ├── no_host/            # Host-filtered reads from Bowtie2
-│   └── taxonomy_output/    # Taxonomic classification results from Kraken2
-└── nextflow.config         # Configuration file
+    └── taxonomy_output/    # Taxonomic classification results from Kraken2
+
 ```
